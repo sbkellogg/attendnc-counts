@@ -1,0 +1,109 @@
+/* ==========================================================================
+   AttendNC Bright Spots — shared design tokens, base reset, header/primary
+   navigation, and footer. Loaded on every page (see src/build.R). Each page
+   also loads its own styles/<page-id>.css for page-specific content.
+   ========================================================================== */
+
+:root {
+  /* NCDPI Color Guide */
+  --dpi-blue: #003A70;
+  --dpi-purple: #922880;
+  --dpi-aqua: #29B5D9;
+  --dpi-orange: #FF9015;
+  --dpi-green: #74C04B;
+  --dpi-gray: #B7B9BB;
+
+  /* Accessible text variants */
+  --purple-text: #6E1360;
+  --aqua-text: #006174;
+  --orange-text: #943E20;
+  --green-text: #2F6230;
+  --gray-text: #525A60;
+
+  /* Approved light shades */
+  --blue-05: #F5F8FB;
+  --blue-10: #E6EDF6;
+  --blue-15: #D9E4F1;
+  --blue-20: #CCDCEC;
+  --purple-10: #F4E9F2;
+  --purple-15: #EFDFEC;
+  --aqua-10: #EAF8FB;
+  --aqua-15: #DFF4F9;
+  --aqua-20: #D4F0F7;
+  --orange-10: #FFF4E8;
+  --orange-15: #FFEEDC;
+  --green-10: #F1F9ED;
+  --green-15: #EAF6E4;
+  --gray-10: #F8F8F8;
+  --gray-15: #F4F4F5;
+  --gray-20: #F1F1F1;
+  --gray-30: #E9EAEB;
+
+  /* Semantic aliases */
+  --navy: var(--dpi-blue);
+  --navy-dark: var(--dpi-blue);
+  --blue: var(--dpi-aqua);
+  --sky: var(--blue-10);
+  --aqua: var(--aqua-10);
+  --gold: var(--dpi-orange);
+  --gold-soft: var(--orange-10);
+  --green: var(--dpi-green);
+  --green-soft: var(--green-10);
+  --ink: #1B1B1B;
+  --muted: var(--gray-text);
+  --line: var(--gray-30);
+  --paper: #FFFFFF;
+  --surface: var(--gray-10);
+  --shadow: 0 16px 40px rgba(0, 58, 112, 0.10);
+  --radius: 18px;
+  --max: 1180px;
+}
+
+/* Base reset */
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--surface);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.58}
+a{color:inherit}
+img,svg{max-width:100%}
+button,a{-webkit-tap-highlight-color:transparent}
+
+.skip-link{position:absolute;left:-9999px;top:0;background:white;color:var(--dpi-blue);padding:.7rem 1rem;z-index:999}
+.skip-link:focus{left:1rem;top:1rem}
+
+/* Header / primary navigation */
+.header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.header-inner{max-width:var(--max);margin:auto;min-height:74px;padding:.8rem 1.25rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{display:flex;align-items:center;gap:.8rem;text-decoration:none;color:var(--dpi-blue);font-weight:700;letter-spacing:-.01em}
+.brand-logo{display:block;width:172px;line-height:0;flex:0 0 auto}
+.brand-logo img{display:block;width:100%;height:auto}
+.brand-tagline{display:block;color:var(--muted);font-weight:400;font-size:.72rem;letter-spacing:.01em;line-height:1.25;padding-left:.8rem;border-left:1px solid var(--line);max-width:195px}
+.brand-tagline strong{display:block;color:var(--dpi-blue);font-size:.74rem;letter-spacing:.04em;margin-bottom:.1rem}
+.nav{display:flex;align-items:center;gap:1.05rem}
+.nav a{text-decoration:none;font-size:.9rem;font-weight:700;color:#465662}
+.nav a:hover,.nav a:focus,.nav a[aria-current="page"]{color:var(--dpi-blue)}
+.nav .nav-cta{border:1px solid var(--dpi-blue);color:var(--dpi-blue);border-radius:999px;padding:.55rem .85rem}
+
+@media(max-width:1080px){
+  .nav a:not(.nav-cta){display:none}
+}
+@media(max-width:620px){
+  .header-inner{min-height:64px}
+  .brand-tagline{display:none}
+  .brand-logo{width:154px}
+  .nav-cta{display:none}
+}
+
+/* Footer */
+footer{background:var(--dpi-blue);color:#fff;margin-top:3rem}
+.footer-inner{max-width:var(--max);margin:auto;padding:2.4rem 1.25rem;display:grid;grid-template-columns:1.4fr .6fr;gap:2rem;align-items:end}
+.footer-inner h2{margin:0;font-size:1.4rem;color:#fff}
+.footer-inner p{margin:.5rem 0 0;max-width:640px;color:#dbeaf5;font-size:.92rem}
+.footer-links{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1rem;padding:0;list-style:none}
+.footer-links a{color:#fff;font-size:.82rem;font-weight:700;text-decoration:none}
+.footer-links a:hover,.footer-links a:focus{text-decoration:underline}
+.footer-meta{text-align:right;font-size:.82rem;color:var(--blue-20)}
+
+@media(max-width:700px){
+  .footer-inner{grid-template-columns:1fr}
+  .footer-meta{text-align:left}
+}

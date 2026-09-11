@@ -1,0 +1,11 @@
+<script>
+const filters=[...document.querySelectorAll('.filter')];
+const cards=[...document.querySelectorAll('.school-card')];
+filters.forEach(btn=>btn.addEventListener('click',()=>{
+  filters.forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  const filter=btn.dataset.filter;
+  cards.forEach(card=>{card.style.display=(filter==='all'||card.dataset.level===filter)?'flex':'none';});
+}));
+document.querySelectorAll('a[href="#"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+</script>

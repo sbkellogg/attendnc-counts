@@ -1,0 +1,10 @@
+name: bright-spots-app-v2
+title:
+username: sbkellogg
+account: sbkellogg
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 17085946
+bundleId: 12509612
+url: https://sbkellogg.shinyapps.io/bright-spots-app-v2/
+version: 1
