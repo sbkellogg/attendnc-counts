@@ -587,16 +587,6 @@ main {
   font-weight: 800
 }
 
-.school-card:nth-child(3n+2) .practice-tag {
-  background: var(--green-10);
-  color: #2f6230
-}
-
-.school-card:nth-child(3n) .practice-tag {
-  background: var(--orange-10);
-  color: #7f3f0a
-}
-
 .school-card .card-link {
   margin-top: auto;
   padding-top: 1rem;
