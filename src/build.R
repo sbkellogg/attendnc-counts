@@ -116,35 +116,6 @@ build_nav <- function(current_key, is_home, up) {
   paste(lines, collapse = "\n")
 }
 
-# ---- Footer links -----------------------------------------------------------
-footer_items <- list(
-  list(label = "Home", anchor = "top"),
-  list(label = "Explore the Data", target = "explore/index.html"),
-  list(label = "School Spotlights", anchor = "spotlights"),
-  list(label = "About the Analysis", target = "explore/about-analysis.html"),
-  list(label = "Research", target = "research/index.html")
-)
-
-build_footer_links <- function(is_home, up) {
-  lines <- vapply(
-    footer_items,
-    function(item) {
-      href <- if (!is.null(item$anchor)) {
-        if (is_home) {
-          paste0("#", item$anchor)
-        } else {
-          paste0(up, landing_output, "#", item$anchor)
-        }
-      } else {
-        paste0(up, item$target)
-      }
-      sprintf('        <li><a href="%s">%s</a></li>', href, item$label)
-    },
-    character(1)
-  )
-  paste(lines, collapse = "\n")
-}
-
 # ---- Page manifest -----------------------------------------------------------
 # nav_current: which primary nav item (if any) gets aria-current="page".
 # is_home: TRUE only for the landing page (affects brand link + anchor prefixes).
@@ -245,12 +216,7 @@ for (p in pages) {
   )
   header_html <- resolve_assets(header_html, up)
 
-  footer_html <- sub(
-    "__FOOTER_LINKS__",
-    build_footer_links(p$is_home, up),
-    footer_tpl,
-    fixed = TRUE
-  )
+  footer_html <- resolve_assets(footer_tpl, up)
 
   body_html <- resolve_links(read_file(p$body), up)
   scripts_html <- if (!is.null(p$scripts) && file.exists(p$scripts)) {
