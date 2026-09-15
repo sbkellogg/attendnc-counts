@@ -28,13 +28,207 @@
     </nav>
   </div>
 </header>
-<section class="page-hero"><div class="page-hero-inner"><div class="eyebrow">AttendNC Bright Spots</div><h1>Explore the Data</h1><p>Find Bright Spot schools across North Carolina, examine the statewide results in more detail, and understand how schools were identified.</p><div class="page-actions"><a class="btn btn-white" href="#map">Explore the Map</a><a class="btn btn-outline" href="../explore/dashboard.html">Open the Dashboard</a></div></div></section>
-<div class="subnav-wrap"><nav class="subnav" aria-label="Explore data sections"><a class="active" href="#map">Map</a><a href="#how">How to Use the Map</a><a href="../explore/dashboard.html">Dashboard</a><a href="../explore/about-analysis.html">About the Analysis</a></nav></div>
+<section class="page-hero">
+    <div class="page-hero-inner">
+        <div class="eyebrow">AttendNC Bright Spots</div>
+        <h1>Explore the Data</h1>
+        <p>In the 2024–25 school year, this context-adjusted analysis identified 310 Bright Spot schools across 62
+            counties and 75 public school units, with traditional public school Bright Spots reaching 66 of North
+            Carolina's 115 districts. Use the map and dashboard below to find schools worth learning from.</p>
+        <div class="page-actions"><a class="btn btn-white" href="#map">Explore the Map</a><a class="btn btn-outline"
+                href="#dashboard">Open the Dashboard</a></div>
+    </div>
+</section>
+<div class="subnav-wrap">
+    <nav class="subnav" aria-label="Explore data sections"><a class="active" href="#map">Map</a><a href="#how">How to
+            Use the Map</a><a href="#dashboard">Dashboard</a><a href="../explore/about-analysis.html">About the
+            Analysis</a></nav>
+</div>
 <main id="main">
-<section class="section" id="map"><p class="kicker">Bright Spots map</p><h2>Find schools making unusual progress.</h2><p class="section-intro">The 2025 map identifies North Carolina public schools whose chronic absenteeism rates were substantially lower than predicted after accounting for school and socioeconomic context. Use it to explore where Bright Spots are located and how they are distributed across grade bands.</p><div class="map-shell"><iframe loading="eager" src="https://sbkellogg.github.io/orpp-public/attendance/2025-bright-spots-map.html" title="Interactive 2025 Attendance Bright Spots map of North Carolina"></iframe><div class="caption"><span>2025 Attendance Bright Spots. Select school markers and use the map controls to refine the view.</span><a href="https://sbkellogg.github.io/orpp-public/attendance/2025-bright-spots-map.html" target="_blank" rel="noopener">Open map in a new window</a></div></div></section>
-<section class="section" id="how"><p class="kicker">How to use the map</p><h2>Start broad, then narrow your view.</h2><p class="section-intro">The map is designed for quick exploration. It shows both the strength of each Bright Spot signal and the grade band of the school.</p><div class="how-grid"><article class="step-card"><div class="step-icon">1</div><h3>Filter the signal</h3><p>Use the checkboxes to show or hide Exceptional, Strong, and Promising Bright Spots.</p></article><article class="step-card"><div class="step-icon">2</div><h3>Read the colors</h3><p>Marker colors indicate grade band, helping you scan for elementary, middle, high, and combined schools.</p></article><article class="step-card"><div class="step-icon">3</div><h3>Select a school</h3><p>Click a marker to inspect a school and use the map to compare its location with nearby Bright Spots.</p></article><article class="step-card"><div class="step-icon">4</div><h3>Go deeper</h3><p>Use the dashboard for additional school-level exploration or read a Spotlight when one is available.</p></article></div><div class="note"><strong>Interpret the map as a discovery tool.</strong> A Bright Spot designation means a school performed substantially better than the model predicted for its context. It does not establish why the school improved or prove that a particular practice caused the result.</div></section>
-<section class="section" id="next"><p class="kicker">Go deeper</p><h2>Use the right tool for the question.</h2><div class="tool-grid"><article class="tool-card"><small>Dashboard</small><h3>Move beyond geography.</h3><p>The analytical dashboard provides a more detailed way to interact with the statewide Bright Spots results and inspect school-level information.</p><a class="link" href="../explore/dashboard.html">Open the dashboard →</a></article><article class="tool-card"><small>About the analysis</small><h3>Understand what “better than expected” means.</h3><p>See the context-adjusted logic, the Bright Spot thresholds, and the distinction between identifying a positive outlier and establishing causal evidence.</p><a class="link" href="../explore/about-analysis.html">About the analysis →</a></article></div></section>
-<section class="cta"><div><h2>From a statewide signal to a school story.</h2><p>The map and dashboard identify where to look. School Spotlights document the routines, relationships, and decisions educators believe contributed to improvement.</p></div><div class="cta-actions"><a class="btn btn-white" href="../index.html#spotlights">View School Spotlights</a></div></section>
+    <section class="section" id="map">
+        <p class="kicker">Bright Spots map</p>
+        <h2>Find schools making unusual progress.</h2>
+        <p class="section-intro">The map identifies North Carolina public schools whose chronic absenteeism rates were
+            substantially lower than predicted after accounting for school and socioeconomic context. Use it to explore
+            where Bright Spots are located and how they are distributed across grade bands. It is designed as a learning
+            tool, not a scorecard.</p>
+        <div class="map-shell"><iframe loading="eager"
+                src="https://sbkellogg.github.io/orpp-public/attendance/2025-bright-spots-map.html"
+                title="Interactive 2025 Attendance Bright Spots map of North Carolina"></iframe>
+            <div class="caption"><span>2025 Attendance Bright Spots. Select school markers and use the map controls to
+                    refine the view.</span><a
+                    href="https://sbkellogg.github.io/orpp-public/attendance/2025-bright-spots-map.html" target="_blank"
+                    rel="noopener">Open map in a new window</a></div>
+        </div>
+    </section>
+    <section class="section" id="how">
+        <p class="kicker">How to use the map</p>
+        <h2>See what each school's numbers mean.</h2>
+        <p class="section-intro">Filter by Bright Spot strength and grade band, then click a school marker to see the
+            rates and improvement measures behind its designation.</p>
+        <div class="two-col">
+            <article class="panel">
+                <h3>Chronic absenteeism rates</h3>
+                <ul>
+                    <li><strong>Peak rate (2021–22):</strong> the school's chronic absenteeism rate during the statewide
+                        pandemic-era peak.</li>
+                    <li><strong>Current rate (2024–25):</strong> the school's most recent chronic absenteeism rate.</li>
+                    <li><strong>Model-expected rate:</strong> the rate predicted for a school with similar
+                        characteristics.</li>
+                </ul>
+            </article>
+            <article class="panel">
+                <h3>Improvement measures</h3>
+                <ul>
+                    <li><strong>Improvement (pp):</strong> the percentage-point reduction since 2021–22.</li>
+                    <li><strong>% reduction from peak:</strong> the relative decline from peak to current rate.</li>
+                    <li><strong>Difference vs. expected (pp):</strong> how far below the model-expected rate the
+                        school's 2024–25 rate falls.</li>
+                    <li><strong>Model residual:</strong> a standardized measure of how strongly a school is
+                        outperforming similar schools.</li>
+                </ul>
+            </article>
+        </div>
+        <div class="note"><strong>Interpret the map as a discovery tool, not a scorecard.</strong> Together these
+            measures distinguish schools that improved substantially in absolute terms from schools that are
+            outperforming expectations after accounting for context.</div>
+    </section>
+    <section class="section" id="dashboard">
+        <p class="kicker">Dig deeper</p>
+        <h2>Use the dashboard to narrow to schools like yours.</h2>
+        <p class="section-intro">The dashboard offers a Map view for seeing where Bright Spot schools are located and a
+            Table view for reviewing the same schools in a sortable, detailed format. The underlying data can also be
+            downloaded as a CSV for local review or follow-up analysis. Because it is hosted separately, it may take a
+            few moments to load.</p>
+        <div class="dashboard-shell">
+            <iframe src="https://sbkellogg.shinyapps.io/bright-spots-app-v2/"
+                title="AttendNC Bright Spots interactive dashboard" loading="lazy"></iframe>
+            <div class="dashboard-fallback"><span>If the embedded dashboard does not load in this preview, open the
+                    hosted application directly.</span><a href="https://sbkellogg.shinyapps.io/bright-spots-app-v2/"
+                    target="_blank" rel="noopener">Open dashboard in a new window</a></div>
+        </div>
+        <div class="two-col">
+            <article class="panel">
+                <h3>Narrow by school context</h3>
+                <ul>
+                    <li><strong>County:</strong> limit results to a selected county.</li>
+                    <li><strong>Grade band:</strong> filter by elementary, middle, high, or other configurations.</li>
+                    <li><strong>Enrollment:</strong> limit results by school size.</li>
+                    <li><strong>Poverty designation:</strong> narrow by whether a school is identified as higher
+                        poverty.</li>
+                    <li><strong>Share of economically disadvantaged students:</strong> filter by the percentage of
+                        students identified as economically disadvantaged.</li>
+                </ul>
+            </article>
+            <article class="panel">
+                <h3>Narrow by Bright Spot strength</h3>
+                <ul>
+                    <li><strong>Bright Spot category:</strong> filter by Exceptional, Strong, or Promising.</li>
+                    <li><strong>Decrease since the 2021–22 peak:</strong> narrow by how much a school's rate has
+                        declined.</li>
+                    <li><strong>School inclusion:</strong> view Bright Spots only, or include all schools for broader
+                        comparison.</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+    <section class="section" id="learning-from-bright-spots">
+        <p class="kicker">From signal to practice</p>
+        <h2>Move from a statewide view to a focused set of schools.</h2>
+        <p class="section-intro">Start by narrowing the map and table to a comparable group of schools, then use a set
+            of guiding questions to structure a learning conversation once you've identified schools of interest.</p>
+        <div class="narrow-grid">
+            <article class="step-card">
+                <h3>Who is improving in a context like ours?</h3>
+                <p>Use the county, grade band, enrollment, poverty designation, and economically disadvantaged student
+                    filters to narrow to comparable schools.</p>
+            </article>
+            <article class="step-card">
+                <h3>Which schools are the clearest Bright Spots?</h3>
+                <p>Use the Exceptional, Strong, and Promising categories to focus on schools outperforming model
+                    expectations by different degrees.</p>
+            </article>
+            <article class="step-card">
+                <h3>Where should we learn more?</h3>
+                <p>Use the table to identify a small set of schools worth contacting, studying, or inviting into a
+                    peer-learning conversation.</p>
+            </article>
+        </div>
+        <div class="how-grid">
+            <article class="step-card">
+                <div class="step-icon">1</div>
+                <h3>What systems changed?</h3>
+                <p>Consider attendance teams, early warning routines, outreach cadence, and how staff monitored
+                    progress.</p>
+            </article>
+            <article class="step-card">
+                <div class="step-icon">2</div>
+                <h3>Which barriers were reduced?</h3>
+                <p>Consider transportation, health, scheduling, family supports, or other local challenges affecting
+                    attendance.</p>
+            </article>
+            <article class="step-card">
+                <div class="step-icon">3</div>
+                <h3>How did belonging and engagement grow?</h3>
+                <p>Consider peer connections, adult mentorship, climate routines, and student voice.</p>
+            </article>
+            <article class="step-card">
+                <div class="step-icon">4</div>
+                <h3>What did leaders do to support the work?</h3>
+                <p>Consider staff roles, follow-through, communication routines, and how the work was sustained over
+                    time.</p>
+            </article>
+        </div>
+    </section>
+    <section class="section" id="interpreting-responsibly">
+        <p class="kicker">Use responsibly</p>
+        <h2>A tool for inquiry, not for labeling.</h2>
+        <p class="section-intro">The model accounts for structural factors, but it cannot identify the specific
+            practices, leadership decisions, or community conditions that drove improvement. Bright Spot identification
+            should be followed by local validation, including conversations with school staff, students, families, and
+            district leaders.</p>
+        <div class="two-col">
+            <article class="panel">
+                <h3>This analysis is...</h3>
+                <ul>
+                    <li>A way to identify schools with meaningful attendance gains relative to context.</li>
+                    <li>A starting point for inquiry, site visits, and peer learning.</li>
+                    <li>A tool to help districts and schools ask what changed, what stayed consistent, and what adults
+                        did differently.</li>
+                </ul>
+            </article>
+            <article class="panel">
+                <h3>This analysis is not...</h3>
+                <ul>
+                    <li>A causal claim about why a school improved.</li>
+                    <li>A ranking of the “best” schools.</li>
+                    <li>Proof that a specific program or practice will work everywhere.</li>
+                </ul>
+            </article>
+        </div>
+    </section>
+    <section class="section" id="next">
+        <p class="kicker">Go deeper</p>
+        <h2>Understand what “better than expected” means.</h2>
+        <div class="tool-grid tool-grid-single">
+            <article class="tool-card"><small>About the analysis</small>
+                <h3>See how Bright Spots are identified.</h3>
+                <p>Review the context-adjusted logic, the Bright Spot thresholds, and the distinction between
+                    identifying
+                    a positive outlier and establishing causal evidence.</p><a class="link"
+                    href="../explore/about-analysis.html">About the analysis →</a>
+            </article>
+        </div>
+    </section>
+    <section class="cta">
+        <div>
+            <h2>From a statewide signal to a school story.</h2>
+            <p>The map and dashboard identify where to look. School Spotlights document the routines, relationships, and
+                decisions educators believe contributed to improvement.</p>
+        </div>
+        <div class="cta-actions"><a class="btn btn-white" href="../index.html#spotlights">View
+                School Spotlights</a></div>
+    </section>
 </main>
 <footer>
   <div class="footer-inner">

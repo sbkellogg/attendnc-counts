@@ -13,8 +13,7 @@ Pages are organized into topical subfolders, mirroring the
 ```
 index.html                                   landing / home page
 explore/
-  index.html                                  "Explore the Data" overview
-  dashboard.html                              embeds the Shiny dashboard (shinyapps.io)
+  index.html                                  "Explore the Data" overview (map + embedded Shiny dashboard)
   about-analysis.html                         methodology write-up
 research/
   index.html                                  attendance research summary
@@ -41,7 +40,7 @@ script handle depth.
 
 ## Building
 
-The deployed HTML files (`index.html`, `explore/*.html`, `research/index.html`,
+The deployed HTML files (`index.html`, `explore/index.html`, `explore/about-analysis.html`, `research/index.html`,
 `spotlights/*/index.html`, ...) are **generated output** — don't hand-edit
 them directly, edit the sources under `src/` and `styles/` and rebuild:
 
@@ -108,7 +107,8 @@ analysis there, then bring the finished HTML into this repo.
 
 - `bright-spots-app-v2/` (the Shiny dashboard's source + data) has been
   removed from this repo — it's deployed and maintained separately on
-  shinyapps.io. `explore/dashboard.html` embeds it via an iframe pointing at
-  the shinyapps.io URL.
+  shinyapps.io. `explore/index.html` (the "Explore the Data" page) embeds it
+  via an iframe pointing at the shinyapps.io URL, in the `#dashboard`
+  section.
 - `.nojekyll` disables GitHub Pages' Jekyll processing so files/folders are
   served as-is.

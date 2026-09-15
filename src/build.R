@@ -9,7 +9,7 @@
 # Deployed pages live in topical subfolders off the repo root (mirroring the
 # innovation-leadership-council site convention), e.g.:
 #   index.html                                  (landing / home)
-#   explore/index.html, explore/dashboard.html, explore/about-analysis.html
+#   explore/index.html (map + embedded dashboard), explore/about-analysis.html
 #   research/index.html
 #   spotlights/<school-slug>/index.html
 #   reports/<report-slug>/index.html            (future; placeholder for now)
@@ -45,7 +45,6 @@ up_prefix <- function(output) strrep("../", page_depth(output))
 page_map <- c(
   "attendnc-bright-spots-landing-page.html" = "index.html",
   "explore-data.html" = "explore/index.html",
-  "bright-spots-dashboard.html" = "explore/dashboard.html",
   "about-analysis.html" = "explore/about-analysis.html",
   "attendnc-attendance-research.html" = "research/index.html",
   "ecu-community-school-spotlight.html" = "spotlights/ecu-community/index.html",
@@ -138,17 +137,6 @@ pages <- list(
     description = "Explore the AttendNC Bright Spots map, dashboard, and analysis.",
     css = "styles/explore-data.css",
     body = "src/pages/explore-data-body.html",
-    scripts = NULL,
-    nav_current = "explore",
-    is_home = FALSE
-  ),
-  list(
-    id = "dashboard",
-    output = "explore/dashboard.html",
-    title = "Bright Spots Dashboard | AttendNC",
-    description = "Interactive AttendNC Bright Spots dashboard for exploring statewide school-level results.",
-    css = "styles/dashboard.css",
-    body = "src/pages/dashboard-body.html",
     scripts = NULL,
     nav_current = "explore",
     is_home = FALSE
