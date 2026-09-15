@@ -6,58 +6,142 @@
 #   - page-specific metadata, CSS, and body content (defined below /
 #     src/pages/*.html)
 #
+# Deployed pages live in topical subfolders off the repo root (mirroring the
+# innovation-leadership-council site convention), e.g.:
+#   index.html                                  (landing / home)
+#   explore/index.html, explore/dashboard.html, explore/about-analysis.html
+#   research/index.html
+#   spotlights/<school-slug>/index.html
+#   reports/<report-slug>/index.html            (future; placeholder for now)
+# `styles/` and `images/` stay at the repo root and are referenced with a
+# relative "../" prefix computed from each page's folder depth.
+#
 # Re-run this script (`Rscript src/build.R` from the repo root, or
 # `source("src/build.R")` from an R session already in the repo root)
 # whenever a partial or a page source file changes. It overwrites the
-# deployed root-level HTML files listed in each page's `output` field.
+# deployed HTML files listed in each page's `output` field.
 
 read_file <- function(path) {
   paste(readLines(path, warn = FALSE, encoding = "UTF-8"), collapse = "\n")
 }
 
-# ---- Primary navigation ----------------------------------------------------
-# `href` is either a same-site anchor on the landing page (resolved relative
-# to the landing page unless we're currently building the landing page
-# itself, in which case the "attendnc-bright-spots-landing-page.html" prefix
-# is dropped) or an absolute path to another top-level page (`absolute = TRUE`).
-nav_items <- list(
-  list(key = "about",       label = "About",                href = "#about"),
-  list(key = "explore",     label = "Explore the Data",      href = "explore-data.html", absolute = TRUE),
-  list(key = "learning",    label = "What We're Learning",   href = "#learning"),
-  list(key = "spotlights",  label = "School Spotlights",     href = "#spotlights"),
-  list(key = "research",    label = "Research",              href = "attendnc-attendance-research.html", absolute = TRUE)
+# ---- Path helpers -----------------------------------------------------------
+# Every canonical path below (page outputs, "images/...", "styles/...") is
+# expressed relative to the repo root. `up_prefix()` turns a page's output
+# path into the "../" chain needed to reach the root from that page's folder,
+# so any root-relative path can be resolved as `paste0(up, root_relative_path)`.
+page_depth <- function(output) {
+  dir <- dirname(output)
+  if (identical(dir, ".")) 0L else length(strsplit(dir, "/", fixed = TRUE)[[1]])
+}
+
+up_prefix <- function(output) strrep("../", page_depth(output))
+
+# ---- Cross-page link map ----------------------------------------------------
+# Maps each page's *old* flat filename (as still referenced literally inside
+# src/pages/*-body.html) to its new root-relative canonical path, so body
+# content written before the restructure keeps working. Update this map (and
+# the affected body files) if a page's canonical path changes again.
+page_map <- c(
+  "attendnc-bright-spots-landing-page.html" = "index.html",
+  "explore-data.html" = "explore/index.html",
+  "bright-spots-dashboard.html" = "explore/dashboard.html",
+  "about-analysis.html" = "explore/about-analysis.html",
+  "attendnc-attendance-research.html" = "research/index.html",
+  "ecu-community-school-spotlight.html" = "spotlights/ecu-community/index.html",
+  "northwest-elementary-school-spotlight-revised.html" = "spotlights/northwest-elementary/index.html"
 )
 
-landing_page <- "attendnc-bright-spots-landing-page.html"
+landing_output <- unname(page_map["attendnc-bright-spots-landing-page.html"])
 
-build_nav <- function(current_key, is_home) {
-  home_prefix <- if (is_home) "" else landing_page
-  lines <- vapply(nav_items, function(item) {
-    href <- if (isTRUE(item$absolute)) item$href else paste0(home_prefix, item$href)
-    current_attr <- if (!is.null(current_key) && identical(item$key, current_key)) {
-      ' aria-current="page"'
-    } else {
-      ""
-    }
-    sprintf('      <a href="%s"%s>%s</a>', href, current_attr, item$label)
-  }, character(1))
+# Rewrites a root-relative asset reference ("images/...") inside `html` so it
+# resolves correctly from a page living `up` directories deep.
+resolve_assets <- function(html, up) {
+  gsub("images/", paste0(up, "images/"), html, fixed = TRUE)
+}
+
+# Like resolve_assets(), plus rewrites any occurrence of an *old* flat page
+# filename (as still referenced literally inside src/pages/*-body.html) to
+# its new canonical path. Only apply this to body content — header/footer
+# HTML is already built with correct new-style paths via build_nav() /
+# build_footer_links(), and running the old-name substitution over those
+# would corrupt any new path that happens to contain an old filename as a
+# substring (e.g. "explore/about-analysis.html" contains "about-analysis.html").
+resolve_links <- function(html, up) {
+  for (old_name in names(page_map)) {
+    html <- gsub(old_name, paste0(up, page_map[[old_name]]), html, fixed = TRUE)
+  }
+  resolve_assets(html, up)
+}
+
+# ---- Primary navigation ----------------------------------------------------
+# Items are either an `anchor` on the landing page, or a `target` pointing at
+# a distinct root-relative canonical page path.
+nav_items <- list(
+  list(key = "about", label = "About", anchor = "about"),
+  list(
+    key = "explore",
+    label = "Explore the Data",
+    target = "explore/index.html"
+  ),
+  list(key = "learning", label = "What We're Learning", anchor = "learning"),
+  list(key = "spotlights", label = "School Spotlights", anchor = "spotlights"),
+  list(key = "research", label = "Research", target = "research/index.html")
+)
+
+build_nav <- function(current_key, is_home, up) {
+  lines <- vapply(
+    nav_items,
+    function(item) {
+      href <- if (!is.null(item$anchor)) {
+        if (is_home) {
+          paste0("#", item$anchor)
+        } else {
+          paste0(up, landing_output, "#", item$anchor)
+        }
+      } else {
+        paste0(up, item$target)
+      }
+      current_attr <- if (
+        !is.null(current_key) && identical(item$key, current_key)
+      ) {
+        ' aria-current="page"'
+      } else {
+        ""
+      }
+      sprintf('      <a href="%s"%s>%s</a>', href, current_attr, item$label)
+    },
+    character(1)
+  )
   paste(lines, collapse = "\n")
 }
 
 # ---- Footer links -----------------------------------------------------------
-build_footer_links <- function(is_home) {
-  home_prefix <- if (is_home) "" else landing_page
-  home_href <- if (is_home) "#top" else landing_page
-  items <- list(
-    list(label = "Home", href = home_href),
-    list(label = "Explore the Data", href = "explore-data.html"),
-    list(label = "School Spotlights", href = paste0(home_prefix, "#spotlights")),
-    list(label = "About the Analysis", href = "about-analysis.html"),
-    list(label = "Research", href = "attendnc-attendance-research.html")
+footer_items <- list(
+  list(label = "Home", anchor = "top"),
+  list(label = "Explore the Data", target = "explore/index.html"),
+  list(label = "School Spotlights", anchor = "spotlights"),
+  list(label = "About the Analysis", target = "explore/about-analysis.html"),
+  list(label = "Research", target = "research/index.html")
+)
+
+build_footer_links <- function(is_home, up) {
+  lines <- vapply(
+    footer_items,
+    function(item) {
+      href <- if (!is.null(item$anchor)) {
+        if (is_home) {
+          paste0("#", item$anchor)
+        } else {
+          paste0(up, landing_output, "#", item$anchor)
+        }
+      } else {
+        paste0(up, item$target)
+      }
+      sprintf('        <li><a href="%s">%s</a></li>', href, item$label)
+    },
+    character(1)
   )
-  lines <- vapply(items, function(i) {
-    sprintf('        <li><a href="%s">%s</a></li>', i$href, i$label)
-  }, character(1))
   paste(lines, collapse = "\n")
 }
 
@@ -67,7 +151,7 @@ build_footer_links <- function(is_home) {
 pages <- list(
   list(
     id = "landing",
-    output = landing_page,
+    output = landing_output,
     title = "AttendNC Bright Spots | NCDPI",
     description = "AttendNC Bright Spots highlights North Carolina schools making unusual progress in reducing chronic absenteeism and shares what educators are learning from them.",
     css = "styles/landing.css",
@@ -78,7 +162,7 @@ pages <- list(
   ),
   list(
     id = "explore-data",
-    output = "explore-data.html",
+    output = "explore/index.html",
     title = "Explore the Data | AttendNC Bright Spots",
     description = "Explore the AttendNC Bright Spots map, dashboard, and analysis.",
     css = "styles/explore-data.css",
@@ -89,7 +173,7 @@ pages <- list(
   ),
   list(
     id = "dashboard",
-    output = "bright-spots-dashboard.html",
+    output = "explore/dashboard.html",
     title = "Bright Spots Dashboard | AttendNC",
     description = "Interactive AttendNC Bright Spots dashboard for exploring statewide school-level results.",
     css = "styles/dashboard.css",
@@ -100,7 +184,7 @@ pages <- list(
   ),
   list(
     id = "about-analysis",
-    output = "about-analysis.html",
+    output = "explore/about-analysis.html",
     title = "About the Analysis | AttendNC Bright Spots",
     description = "How AttendNC identifies Bright Spot schools using context-adjusted chronic absenteeism analysis.",
     css = "styles/about-analysis.css",
@@ -111,7 +195,7 @@ pages <- list(
   ),
   list(
     id = "research",
-    output = "attendnc-attendance-research.html",
+    output = "research/index.html",
     title = "AttendNC Research | AttendNC Bright Spots",
     description = "AttendNC research summary: what North Carolina and national research says about chronic absenteeism, its consequences, causes, and promising responses.",
     css = "styles/research.css",
@@ -122,7 +206,7 @@ pages <- list(
   ),
   list(
     id = "ecu-spotlight",
-    output = "ecu-community-school-spotlight.html",
+    output = "spotlights/ecu-community/index.html",
     title = "ECU Community School | AttendNC Counts School Spotlight",
     description = "AttendNC Bright Spots school spotlight for ECU Community School, an East Carolina University laboratory school.",
     css = "styles/ecu-spotlight.css",
@@ -133,7 +217,7 @@ pages <- list(
   ),
   list(
     id = "northwest-spotlight",
-    output = "northwest-elementary-school-spotlight-revised.html",
+    output = "spotlights/northwest-elementary/index.html",
     title = "Northwest Elementary | AttendNC Counts School Spotlight",
     description = "AttendNC Bright Spots school spotlight for Northwest Elementary School in Pitt County Schools.",
     css = "styles/northwest-spotlight.css",
@@ -149,15 +233,31 @@ header_tpl <- read_file("src/partials/header.html")
 footer_tpl <- read_file("src/partials/footer.html")
 
 for (p in pages) {
-  brand_href <- if (p$is_home) "#top" else landing_page
+  up <- up_prefix(p$output)
+  brand_href <- if (p$is_home) "#top" else paste0(up, landing_output)
 
   header_html <- sub("__BRAND_HREF__", brand_href, header_tpl, fixed = TRUE)
-  header_html <- sub("__NAV_ITEMS__", build_nav(p$nav_current, p$is_home), header_html, fixed = TRUE)
+  header_html <- sub(
+    "__NAV_ITEMS__",
+    build_nav(p$nav_current, p$is_home, up),
+    header_html,
+    fixed = TRUE
+  )
+  header_html <- resolve_assets(header_html, up)
 
-  footer_html <- sub("__FOOTER_LINKS__", build_footer_links(p$is_home), footer_tpl, fixed = TRUE)
+  footer_html <- sub(
+    "__FOOTER_LINKS__",
+    build_footer_links(p$is_home, up),
+    footer_tpl,
+    fixed = TRUE
+  )
 
-  body_html <- read_file(p$body)
-  scripts_html <- if (!is.null(p$scripts) && file.exists(p$scripts)) read_file(p$scripts) else ""
+  body_html <- resolve_links(read_file(p$body), up)
+  scripts_html <- if (!is.null(p$scripts) && file.exists(p$scripts)) {
+    read_file(p$scripts)
+  } else {
+    ""
+  }
 
   out <- paste0(
     "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n",
@@ -165,15 +265,23 @@ for (p in pages) {
     "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n",
     sprintf("<meta name=\"description\" content=\"%s\">\n", p$description),
     sprintf("<title>%s</title>\n", p$title),
-    "<link rel=\"stylesheet\" href=\"styles/shared.css\">\n",
-    sprintf("<link rel=\"stylesheet\" href=\"%s\">\n", p$css),
+    sprintf("<link rel=\"stylesheet\" href=\"%sstyles/shared.css\">\n", up),
+    sprintf("<link rel=\"stylesheet\" href=\"%s%s\">\n", up, p$css),
     "</head>\n<body>\n",
-    header_html, "\n",
-    body_html, "\n",
-    footer_html, "\n",
+    header_html,
+    "\n",
+    body_html,
+    "\n",
+    footer_html,
+    "\n",
     scripts_html,
     "\n</body>\n</html>\n"
   )
+
+  out_dir <- dirname(p$output)
+  if (!identical(out_dir, ".") && !dir.exists(out_dir)) {
+    dir.create(out_dir, recursive = TRUE)
+  }
 
   writeLines(out, p$output, useBytes = TRUE)
   message("Built ", p$output)
