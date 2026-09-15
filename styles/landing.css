@@ -620,6 +620,31 @@ main {
   content: none
 }
 
+.spotlights-soon {
+  margin-top: 2.75rem;
+  padding-top: 2rem;
+  border-top: 1px dashed var(--line)
+}
+
+.spotlights-soon-title {
+  margin: 0 0 1.15rem;
+  color: var(--muted);
+  font-size: .82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .08em
+}
+
+.school-card-soon {
+  background: var(--bg, #fafbfc);
+  border-style: dashed;
+  box-shadow: none
+}
+
+.school-card-soon h3 {
+  color: var(--muted)
+}
+
 .evidence-card {
   margin-top: 2rem;
   padding: 1.7rem 1.8rem;
