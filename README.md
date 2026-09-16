@@ -72,10 +72,15 @@ Re-run it after editing any partial, page body, or page-specific CSS.
      css = "styles/<slug>-spotlight.css",
      body = "src/pages/<slug>-spotlight-body.html",
      scripts = NULL,
-     nav_current = "spotlights",
+     nav_current = NULL,
      is_home = FALSE
    )
    ```
+   The top nav (`nav_items` in `src/build.R`) is reserved for the site's main
+   index pages — currently `home` (landing), `explore`, and `research`.
+   Spotlights don't have their own nav item, so `nav_current` stays `NULL`
+   (only set it to one of those three keys if the page should highlight a
+   matching item in the top bar as current).
 5. If the new spotlight should be linked from the landing page's spotlights
    section, add that link in `src/pages/landing-body.html` — write it as a
    root-relative path (`spotlights/<slug>/index.html`); `build.R` will

@@ -151,22 +151,28 @@ a {
 
 .brand-tagline {
   display: block;
-  color: var(--muted);
-  font-weight: 400;
-  font-size: .72rem;
-  letter-spacing: .01em;
-  line-height: 1.25;
+  line-height: 1.15;
   padding-left: .8rem;
   border-left: 1px solid var(--line);
-  max-width: 195px
+  max-width: 220px
 }
 
 .brand-tagline strong {
   display: block;
   color: var(--dpi-blue);
-  font-size: .74rem;
-  letter-spacing: .04em;
-  margin-bottom: .1rem
+  font-weight: 700;
+  font-size: .8rem;
+  letter-spacing: .01em;
+  white-space: nowrap
+}
+
+.brand-tagline span {
+  display: block;
+  color: var(--muted);
+  font-weight: 400;
+  font-size: .72rem;
+  margin-top: .14rem;
+  white-space: nowrap
 }
 
 .nav {

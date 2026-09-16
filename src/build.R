@@ -53,10 +53,12 @@ page_map <- c(
 
 landing_output <- unname(page_map["attendnc-bright-spots-landing-page.html"])
 
-# Rewrites a root-relative asset reference ("images/...") inside `html` so it
-# resolves correctly from a page living `up` directories deep.
+# Rewrites a root-relative asset reference ("images/..." or "documents/...")
+# inside `html` so it resolves correctly from a page living `up` directories
+# deep.
 resolve_assets <- function(html, up) {
-  gsub("images/", paste0(up, "images/"), html, fixed = TRUE)
+  html <- gsub("images/", paste0(up, "images/"), html, fixed = TRUE)
+  gsub("documents/", paste0(up, "documents/"), html, fixed = TRUE)
 }
 
 # Like resolve_assets(), plus rewrites any occurrence of an *old* flat page
@@ -74,17 +76,17 @@ resolve_links <- function(html, up) {
 }
 
 # ---- Primary navigation ----------------------------------------------------
+# The top bar is reserved for the site's main index pages (each with its own
+# URL and, where useful, its own in-page quick-nav for anchor sections).
 # Items are either an `anchor` on the landing page, or a `target` pointing at
 # a distinct root-relative canonical page path.
 nav_items <- list(
-  list(key = "about", label = "About", anchor = "about"),
+  list(key = "home", label = "Bright Spots", target = landing_output),
   list(
     key = "explore",
     label = "Explore the Data",
     target = "explore/index.html"
   ),
-  list(key = "learning", label = "What We're Learning", anchor = "learning"),
-  list(key = "spotlights", label = "School Spotlights", anchor = "spotlights"),
   list(key = "research", label = "Research", target = "research/index.html")
 )
 
@@ -127,7 +129,7 @@ pages <- list(
     css = "styles/landing.css",
     body = "src/pages/landing-body.html",
     scripts = "src/pages/landing-scripts.html",
-    nav_current = NULL,
+    nav_current = "home",
     is_home = TRUE
   ),
   list(
@@ -171,7 +173,7 @@ pages <- list(
     css = "styles/ecu-spotlight.css",
     body = "src/pages/ecu-spotlight-body.html",
     scripts = NULL,
-    nav_current = "spotlights",
+    nav_current = NULL,
     is_home = FALSE
   ),
   list(
@@ -182,7 +184,7 @@ pages <- list(
     css = "styles/northwest-spotlight.css",
     body = "src/pages/northwest-spotlight-body.html",
     scripts = NULL,
-    nav_current = "spotlights",
+    nav_current = NULL,
     is_home = FALSE
   )
 )
