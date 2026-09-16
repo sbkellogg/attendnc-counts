@@ -91,38 +91,6 @@
     color: var(--dpi-blue)
 }
 
-.subnav-wrap {
-    background: white;
-    border-bottom: 1px solid var(--line);
-    position: sticky;
-    top: 74px;
-    z-index: 20
-}
-
-.subnav {
-    max-width: var(--max);
-    margin: auto;
-    padding: .72rem 1.25rem;
-    display: flex;
-    gap: .55rem;
-    flex-wrap: wrap
-}
-
-.subnav a {
-    text-decoration: none;
-    color: var(--muted);
-    font-size: .84rem;
-    font-weight: 800;
-    padding: .48rem .72rem;
-    border-radius: 999px
-}
-
-.subnav a:hover,
-.subnav a.active {
-    background: var(--blue-10);
-    color: var(--dpi-blue)
-}
-
 main {
     max-width: var(--max);
     margin: auto;
@@ -569,10 +537,6 @@ main {
 
     .nav-cta {
         display: none
-    }
-
-    .subnav-wrap {
-        top: 64px
     }
 
     .page-hero-inner {

@@ -201,6 +201,41 @@ a {
   padding: .55rem .85rem
 }
 
+/* Secondary "on this page" navigation — used on topical pages (landing,
+   explore, research, etc.) for in-page section links. Shared here so every
+   page's quick-nav looks and behaves the same. */
+.quick-nav {
+  position: sticky;
+  top: 74px;
+  z-index: 30;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 7px 18px rgba(23, 36, 49, .04)
+}
+
+.quick-nav-inner {
+  max-width: var(--max);
+  margin: auto;
+  padding: .68rem 1.25rem;
+  display: flex;
+  gap: 1.15rem;
+  overflow-x: auto;
+  white-space: nowrap
+}
+
+.quick-nav a {
+  text-decoration: none;
+  font-size: .82rem;
+  font-weight: 800;
+  color: #52616d
+}
+
+.quick-nav a:hover,
+.quick-nav a:focus,
+.quick-nav a[aria-current="page"] {
+  color: var(--dpi-blue)
+}
+
 @media(max-width:1080px) {
   .nav a:not(.nav-cta) {
     display: none
@@ -218,6 +253,10 @@ a {
 
   .brand-logo {
     width: 154px
+  }
+
+  .quick-nav {
+    top: 64px
   }
 
   .nav-cta {
