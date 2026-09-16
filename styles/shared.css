@@ -154,7 +154,7 @@ a {
   line-height: 1.15;
   padding-left: .8rem;
   border-left: 1px solid var(--line);
-  max-width: 220px
+  flex: 0 0 auto
 }
 
 .brand-tagline strong {
