@@ -87,6 +87,11 @@ nav_items <- list(
     label = "Explore the Data",
     target = "explore/index.html"
   ),
+  list(
+    key = "about-analysis",
+    label = "About the Analysis",
+    target = "explore/about-analysis.html"
+  ),
   list(key = "research", label = "Research", target = "research/index.html")
 )
 
@@ -151,7 +156,7 @@ pages <- list(
     css = "styles/about-analysis.css",
     body = "src/pages/about-analysis-body.html",
     scripts = NULL,
-    nav_current = "explore",
+    nav_current = "about-analysis",
     is_home = FALSE
   ),
   list(
