@@ -200,7 +200,7 @@ pages <- list(
     css = "styles/bright-spots-pilot.css",
     body = "src/pages/bright-spots-pilot-body.html",
     scripts = NULL,
-    nav_current = "research",
+    nav_current = NULL,
     is_home = FALSE
   )
 )
