@@ -175,13 +175,19 @@ h1 {
 }
 
 main {
-    display: block
+    display: block;
+    max-width: var(--max);
+    margin: auto;
+    padding: 4.2rem 1.25rem 5rem
 }
 
 .section {
-    max-width: var(--max);
-    margin: auto;
-    padding: 4.4rem 1.25rem
+    margin-top: 5.2rem;
+    scroll-margin-top: 115px
+}
+
+.section:first-child {
+    margin-top: 0
 }
 
 .kicker {
@@ -245,10 +251,6 @@ main {
 
 .stat+.stat {
     border-left: 1px solid var(--line)
-}
-
-.section-flush {
-    padding-top: 0
 }
 
 .quote-card {
@@ -417,7 +419,10 @@ main {
 .timeline {
     margin-top: 1.9rem;
     display: grid;
-    gap: 0
+    gap: 0;
+    background: var(--blue-10);
+    border-radius: var(--radius);
+    padding: .4rem 1.8rem
 }
 
 .phase {
@@ -425,11 +430,11 @@ main {
     grid-template-columns: 180px 1fr;
     gap: 1.6rem;
     padding: 1.4rem 0;
-    border-top: 1px solid var(--line)
+    border-top: 1px solid var(--blue-20)
 }
 
-.phase:last-child {
-    border-bottom: 1px solid var(--line)
+.phase:first-child {
+    border-top: 0
 }
 
 .phase .when {
@@ -488,14 +493,16 @@ main {
     color: var(--muted)
 }
 
-.important {
-    margin-top: 1.1rem;
-    border-radius: 14px;
-    padding: .9rem 1rem;
-    background: var(--orange-10);
-    border: 1px solid #f0d2b0;
-    color: #6d5123;
-    font-weight: 700
+.study-link {
+    display: inline-flex;
+    margin-top: .55rem;
+    color: var(--dpi-blue);
+    font-weight: 800;
+    text-decoration: none
+}
+
+.study-link:hover {
+    text-decoration: underline
 }
 
 @media(max-width:980px) {
@@ -536,12 +543,6 @@ main {
         padding: 3.4rem 1.1rem 2.8rem
     }
 
-    .band .section,
-    .section {
-        padding-top: 3.2rem;
-        padding-bottom: 3.2rem
-    }
-
     .stats-inner {
         grid-template-columns: 1fr
     }
@@ -556,6 +557,10 @@ main {
     .process-grid,
     .benefits-grid {
         grid-template-columns: 1fr
+    }
+
+    .timeline {
+        padding: .4rem 1.1rem
     }
 
     .phase {
