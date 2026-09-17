@@ -537,6 +537,10 @@ main {
     color: #e8f2f8
 }
 
+.bridge-lead .btn {
+    margin-top: 1rem
+}
+
 .bridge-list {
     display: grid;
     grid-template-columns: 1fr 1fr;

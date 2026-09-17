@@ -48,7 +48,8 @@ page_map <- c(
   "about-analysis.html" = "explore/about-analysis.html",
   "attendnc-attendance-research.html" = "research/index.html",
   "ecu-community-school-spotlight.html" = "spotlights/ecu-community/index.html",
-  "northwest-elementary-school-spotlight-revised.html" = "spotlights/northwest-elementary/index.html"
+  "northwest-elementary-school-spotlight-revised.html" = "spotlights/northwest-elementary/index.html",
+  "bright-spots-feasibility-study.html" = "research/bright-spots-feasibility-study/index.html"
 )
 
 landing_output <- unname(page_map["attendnc-bright-spots-landing-page.html"])
@@ -193,12 +194,12 @@ pages <- list(
     is_home = FALSE
   ),
   list(
-    id = "bright-spots-pilot",
-    output = "research/bright-spots-learning-pilot/index.html",
-    title = "Bright Spots Learning Pilot | AttendNC Counts",
-    description = "AttendNC Counts Bright Spots Learning Pilot information page.",
-    css = "styles/bright-spots-pilot.css",
-    body = "src/pages/bright-spots-pilot-body.html",
+    id = "bright-spots-feasibility-study",
+    output = "research/bright-spots-feasibility-study/index.html",
+    title = "Bright Spots Feasibility Study | AttendNC Counts",
+    description = "AttendNC Counts Bright Spots feasibility study information page.",
+    css = "styles/bright-spots-feasibility-study.css",
+    body = "src/pages/bright-spots-feasibility-study-body.html",
     scripts = NULL,
     nav_current = NULL,
     is_home = FALSE
