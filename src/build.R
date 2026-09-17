@@ -191,6 +191,17 @@ pages <- list(
     scripts = NULL,
     nav_current = NULL,
     is_home = FALSE
+  ),
+  list(
+    id = "bright-spots-pilot",
+    output = "research/bright-spots-learning-pilot/index.html",
+    title = "Bright Spots Learning Pilot | AttendNC Counts",
+    description = "AttendNC Counts Bright Spots Learning Pilot information page.",
+    css = "styles/bright-spots-pilot.css",
+    body = "src/pages/bright-spots-pilot-body.html",
+    scripts = NULL,
+    nav_current = "research",
+    is_home = FALSE
   )
 )
 

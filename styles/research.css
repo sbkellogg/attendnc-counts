@@ -196,30 +196,26 @@ main {
     padding: 4.4rem 1.25rem
 }
 
-.section+.section {
-    border-top: 1px solid var(--line)
-}
-
 .kicker {
     margin: 0 0 .45rem;
     color: var(--dpi-blue);
-    font-size: .77rem;
-    font-weight: 850;
-    letter-spacing: .11em;
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .1em;
     text-transform: uppercase
 }
 
 .section h2 {
-    margin: .15rem 0 .8rem;
-    font-size: clamp(2rem, 3.8vw, 3.25rem);
-    line-height: 1.05;
-    letter-spacing: -.035em;
-    color: var(--dpi-blue)
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.35rem);
+    line-height: 1.06;
+    letter-spacing: -.04em;
+    color: var(--ink)
 }
 
 .section-intro {
     max-width: 850px;
-    margin: 0;
+    margin: 1rem 0 0;
     color: var(--muted);
     font-size: 1.08rem
 }
