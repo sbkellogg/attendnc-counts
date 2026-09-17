@@ -187,13 +187,18 @@ h1 {
 }
 
 main {
-    display: block
+    max-width: var(--max);
+    margin: auto;
+    padding: 4.2rem 1.25rem 5rem
 }
 
 .section {
-    max-width: var(--max);
-    margin: auto;
-    padding: 4.4rem 1.25rem
+    margin-top: 5.2rem;
+    scroll-margin-top: 115px
+}
+
+.section:first-child {
+    margin-top: 0
 }
 
 .kicker {
@@ -430,10 +435,6 @@ main {
 
 .caution li {
     margin: .35rem 0
-}
-
-.nc-wrap {
-    background: linear-gradient(180deg, #fff 0%, var(--blue-05) 100%)
 }
 
 .study-grid {
@@ -768,8 +769,8 @@ main {
         border-bottom: 0 !important
     }
 
-    .section {
-        padding: 3.3rem 1rem
+    main {
+        padding: 3.2rem 1rem 3.5rem
     }
 
     .conclusion-grid,
