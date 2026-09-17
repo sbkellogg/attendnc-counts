@@ -247,34 +247,6 @@ main {
     border-left: 1px solid var(--line)
 }
 
-/* Full-bleed section bands (tinted backgrounds behind a centered .section) */
-.band {
-    padding: 0
-}
-
-.band .section {
-    padding-top: 4.4rem;
-    padding-bottom: 4.4rem
-}
-
-.band-participation {
-    background: var(--gray-10);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line)
-}
-
-.band-approach {
-    background: var(--gray-10);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line)
-}
-
-.band-comparison {
-    background: var(--gray-10);
-    border-top: 1px solid var(--line);
-    border-bottom: 1px solid var(--line)
-}
-
 .section-flush {
     padding-top: 0
 }
