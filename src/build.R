@@ -194,6 +194,17 @@ pages <- list(
     is_home = FALSE
   ),
   list(
+    id = "bearfield-spotlight",
+    output = "spotlights/bearfield-primary/index.html",
+    title = "Bearfield Primary School | AttendNC Counts School Spotlight",
+    description = "AttendNC Bright Spots school spotlight for Bearfield Primary School in Hertford County Public Schools.",
+    css = "styles/bearfield-spotlight.css",
+    body = "src/pages/bearfield-spotlight-body.html",
+    scripts = NULL,
+    nav_current = NULL,
+    is_home = FALSE
+  ),
+  list(
     id = "bright-spots-feasibility-study",
     output = "research/bright-spots-feasibility-study/index.html",
     title = "Bright Spots Feasibility Study | AttendNC Counts",

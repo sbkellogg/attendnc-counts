@@ -1093,3 +1093,30 @@ details p {
     break-inside: avoid;
   }
 }
+/* Bearfield-specific overrides */
+.hero.hero--bearfield {
+  background:
+    radial-gradient(circle at 78% 28%, rgba(41, 181, 217, .22), transparent 28%),
+    radial-gradient(circle at 88% 72%, rgba(255, 144, 21, .18), transparent 26%),
+    linear-gradient(135deg, #003A70 0%, #005B8E 58%, #077890 100%);
+}
+
+.hero.hero--bearfield::before {
+  background: linear-gradient(90deg, rgba(0, 58, 112, .98) 0%, rgba(0, 58, 112, .86) 46%, rgba(0, 58, 112, .58) 100%);
+}
+
+.workflow.workflow--six {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+@media (max-width: 980px) {
+  .workflow.workflow--six {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .workflow.workflow--six {
+    grid-template-columns: 1fr;
+  }
+}

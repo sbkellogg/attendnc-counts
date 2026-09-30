@@ -267,6 +267,19 @@ h3 {
   height: 100%;
 }
 
+.data-card__badge {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  background: var(--dpi-purple);
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  padding: .3rem .7rem;
+  border-radius: 999px;
+}
+
 .data-card h3 {
   font-size: 1rem;
 }
